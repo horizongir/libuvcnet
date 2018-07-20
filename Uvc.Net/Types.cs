@@ -36,6 +36,27 @@ namespace Uvc.Net
         Sbggr8
     };
 
+    public enum RequestCode
+    {
+        Undefined = 0x00,
+        SetCurrent = 0x01,
+        GetCurrent = 0x81,
+        GetMin = 0x82,
+        GetMax = 0x83,
+        GetResolution = 0x84,
+        GetLength = 0x85,
+        GetInfo = 0x86,
+        GetDefault = 0x87
+    }
+
+    public enum AutoExposureMode : byte
+    {
+        Manual = 0x1,
+        Auto = 0x2,
+        ShutterPriority = 0x4,
+        AperturePriority = 0x8
+    }
+
     public struct FormatDescriptor
     {
         public FrameFormat Format;

@@ -17,6 +17,66 @@ namespace Uvc.Net
             handle = deviceHandle;
         }
 
+        public AutoExposureMode AutoExposure
+        {
+            get
+            {
+                byte value;
+                NativeMethods.uvc_get_ae_mode(handle, out value, RequestCode.GetCurrent);
+                return (AutoExposureMode)value;
+            }
+            set
+            {
+                var error = NativeMethods.uvc_set_ae_mode(handle, (byte)value);
+                UvcException.ThrowExceptionForUvcError(error);
+            }
+        }
+
+        public bool AutoExposurePriority
+        {
+            get
+            {
+                byte value;
+                NativeMethods.uvc_get_ae_priority(handle, out value, RequestCode.GetCurrent);
+                return value != 0;
+            }
+            set
+            {
+                var error = NativeMethods.uvc_set_ae_priority(handle, value ? (byte)1 : (byte)0);
+                UvcException.ThrowExceptionForUvcError(error);
+            }
+        }
+
+        public uint ExposureTimeAbsolute
+        {
+            get
+            {
+                uint value;
+                NativeMethods.uvc_get_exposure_abs(handle, out value, RequestCode.GetCurrent);
+                return value;
+            }
+            set
+            {
+                var error = NativeMethods.uvc_set_exposure_abs(handle, value);
+                UvcException.ThrowExceptionForUvcError(error);
+            }
+        }
+
+        public int ExposureTimeRelative
+        {
+            get
+            {
+                sbyte value;
+                NativeMethods.uvc_get_exposure_rel(handle, out value, RequestCode.GetCurrent);
+                return (int)value;
+            }
+            set
+            {
+                var error = NativeMethods.uvc_set_exposure_rel(handle, (sbyte)value);
+                UvcException.ThrowExceptionForUvcError(error);
+            }
+        }
+
         public IEnumerable<FormatDescriptor> GetStreamControlFormats()
         {
             var descs = NativeMethods.uvc_get_format_descs(handle);

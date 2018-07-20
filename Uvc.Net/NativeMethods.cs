@@ -105,6 +105,39 @@ namespace Uvc.Net
         internal static extern void uvc_stream_close(IntPtr strmh);
 
         [DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int uvc_get_ctrl_len(UvcDeviceHandle devh, byte unit, byte ctrl);
+
+        [DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int uvc_get_ctrl(UvcDeviceHandle devh, byte unit, byte ctrl, IntPtr data, int len, RequestCode req_code);
+
+        [DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int uvc_set_ctrl(UvcDeviceHandle devh, byte unit, byte ctrl, IntPtr data, int len);
+
+        [DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern UvcError uvc_get_ae_mode(UvcDeviceHandle devh, out byte mode, RequestCode req_code);
+
+        [DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern UvcError uvc_set_ae_mode(UvcDeviceHandle devh, byte mode);
+
+        [DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern UvcError uvc_get_ae_priority(UvcDeviceHandle devh, out byte priority, RequestCode req_code);
+
+        [DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern UvcError uvc_set_ae_priority(UvcDeviceHandle devh, byte priority);
+
+        [DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern UvcError uvc_get_exposure_abs(UvcDeviceHandle devh, out uint time, RequestCode req_code);
+
+        [DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern UvcError uvc_set_exposure_abs(UvcDeviceHandle devh, uint time);
+
+        [DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern UvcError uvc_get_exposure_rel(UvcDeviceHandle devh, out sbyte step, RequestCode req_code);
+
+        [DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern UvcError uvc_set_exposure_rel(UvcDeviceHandle devh, sbyte step);
+
+        [DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr uvc_strerror(UvcError err);
 
         [DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
