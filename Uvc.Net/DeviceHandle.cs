@@ -79,6 +79,13 @@ namespace Uvc.Net
             cb = callback;
         }
 
+        public void StartIsoStreaming(ref StreamControl control, FrameCallback callback)
+        {
+            var error = NativeMethods.uvc_start_iso_streaming(handle, ref control, callback, IntPtr.Zero);
+            UvcException.ThrowExceptionForUvcError(error);
+            cb = callback;
+        }
+
         public void StopStreaming()
         {
             NativeMethods.uvc_stop_streaming(handle);
